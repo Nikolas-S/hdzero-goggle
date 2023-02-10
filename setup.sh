@@ -4,7 +4,7 @@
 
 architecture=$(arch)
 
-if [[ $architecture == *"arm64"* ]]; then
+if [[ $architecture == *"arm64"* ]] || [[ $architecture == *"aarch64"* ]] ; then
   echo "Starting setup for arm64 host..."
   . ./setup_arm.sh
 elif [[ $architecture == *"x86"* ]]; then
