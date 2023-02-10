@@ -7,6 +7,7 @@ set -e
 URL_ARM_TOOLCHAIN="https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-aarch64-arm-none-linux-gnueabihf.tar.xz"
 URL_x86_TOOLCHAIN="https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2018.02-2.tar.bz2"
 
+sudo apt install -y bzip2
 sudo apt install -y mtd-utils
 rm -rf mkapp/bin
 mkdir mkapp/bin

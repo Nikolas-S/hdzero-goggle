@@ -3,6 +3,7 @@ set -e
 
 TOOLCHAIN_URL="https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2018.02-2.tar.bz2"
 
+sudo apt install -y bzip2
 sudo apt install -y mtd-utils
 rm -rf mkapp/bin
 mkdir mkapp/bin
