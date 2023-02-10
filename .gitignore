@@ -2,6 +2,7 @@
 linux-4.9
 /media
 toolchain
+/mkapp/bin/
 /mkapp/image
 /mkapp/ota_app
 /mkapp/app/app/HDZGOGGLE
