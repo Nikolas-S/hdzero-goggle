@@ -171,7 +171,7 @@ int settings_put_osd_element_shown(bool show, char *config_name) {
     return settings_put_bool("osd", setting_key, show);
 }
 
-int settings_put_osd_element_pos_x(setting_osd_goggle_element_positions_t *pos, char *config_name) {
+int settings_put_osd_element_pos_x(const setting_osd_goggle_element_positions_t *pos, char *config_name) {
     char setting_key[128];
     int ret = 0;
 
@@ -182,7 +182,7 @@ int settings_put_osd_element_pos_x(setting_osd_goggle_element_positions_t *pos, 
     return ret;
 }
 
-int settings_put_osd_element_pos_y(setting_osd_goggle_element_positions_t *pos, char *config_name) {
+int settings_put_osd_element_pos_y(const setting_osd_goggle_element_positions_t *pos, char *config_name) {
     char setting_key[128];
     int ret = 0;
 
@@ -193,7 +193,7 @@ int settings_put_osd_element_pos_y(setting_osd_goggle_element_positions_t *pos, 
     return ret;
 }
 
-int settings_put_osd_element(setting_osd_goggle_element_t *element, char *config_name) {
+int settings_put_osd_element(const setting_osd_goggle_element_t *element, char *config_name) {
     int ret = 0;
 
     ret = settings_put_osd_element_shown(element->show, config_name);
