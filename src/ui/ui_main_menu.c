@@ -98,7 +98,7 @@ void submenu_enter(void) {
     }
 }
 
-void submenu_right_button(bool is_short) {
+void submenu_right_button(right_button_input_t click_type) {
     page_pack_t *pp = find_pp(lv_menu_get_cur_main_page(menu));
     if (!pp) {
         return;
@@ -106,7 +106,7 @@ void submenu_right_button(bool is_short) {
 
     if (pp->on_right_button) {
         // if your page has a right_button event handler, call it
-        pp->on_right_button(is_short);
+        pp->on_right_button(click_type);
     }
 }
 

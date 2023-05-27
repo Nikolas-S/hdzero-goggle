@@ -24,8 +24,12 @@ hw_revision_t getHwRevision();
 #define DIAL_KEY_DOWN   2
 #define DIAL_KEY_CLICK  3
 #define DIAL_KEY_PRESS  4
-#define RIGHT_KEY_CLICK 5
-#define RIGHT_KEY_PRESS 6
+
+typedef enum {
+    RIGHT_KEY_CLICK = 5,
+    RIGHT_KEY_LONG_PRESS = 6,
+    RIGHT_KEY_DOUBLE_CLICK = 7
+} right_button_input_t;
 
 extern atomic_int g_key;
 extern atomic_int g_init_done;

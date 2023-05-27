@@ -396,7 +396,7 @@ void pb_key(uint8_t key) {
         mark_video_file(media_db.cur_sel);
         break;
 
-    case RIGHT_KEY_PRESS:
+    case RIGHT_KEY_LONG_PRESS:
         delete_video_file(media_db.cur_sel);
         break;
     }
@@ -411,8 +411,11 @@ static void page_playback_on_click(uint8_t key, int sel) {
     pb_key(key);
 }
 
-static void page_playback_on_right_button(bool is_short) {
-    pb_key(is_short ? RIGHT_KEY_CLICK : RIGHT_KEY_PRESS);
+static void page_playback_on_right_button(right_button_input_t click_type) {
+    if (click_type == RIGHT_KEY_CLICK)
+        pb_key(RIGHT_KEY_CLICK);
+    else if (click_type == RIGHT_KEY_LONG_PRESS)
+        pb_key(RIGHT_KEY_LONG_PRESS);
 }
 
 page_pack_t pp_playback = {

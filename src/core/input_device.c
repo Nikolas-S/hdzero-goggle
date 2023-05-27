@@ -236,7 +236,9 @@ static void btn_click(void) // short press enter key
     pthread_mutex_unlock(&lvgl_mutex);
 }
 
-void rbtn_click(right_button_t click_type) {
+void rbtn_click(right_button_input_t click_type) {
+    LOGI("rbtn_click (%d) type:%d", g_app_state, click_type);
+
     if (g_init_done != 1)
         return;
 
@@ -246,18 +248,15 @@ void rbtn_click(right_button_t click_type) {
     switch (g_app_state) {
     case APP_STATE_SUBMENU:
 		pthread_mutex_lock(&lvgl_mutex);
-        if (click_type == RIGHT_CLICK)
-            submenu_right_button(true);
-        else if (click_type == RIGHT_LONG_PRESS)
-            submenu_right_button(false);
+        submenu_right_button(click_type);
 		pthread_mutex_unlock(&lvgl_mutex);
         break;
     case APP_STATE_VIDEO:
-        if (click_type == RIGHT_CLICK) {
+        if (click_type == RIGHT_KEY_CLICK) {
             dvr_cmd(DVR_TOGGLE);
-        } else if (click_type == RIGHT_LONG_PRESS) {
+        } else if (click_type == RIGHT_KEY_LONG_PRESS) {
             step_topfan();
-        } else if (click_type == RIGHT_DOUBLE_CLICK) {
+        } else if (click_type == RIGHT_KEY_DOUBLE_CLICK) {
             ht_set_center_position();
         }
         break;
@@ -456,7 +455,7 @@ static void *thread_input_device(void *ptr) {
 
     while (true) {
         SDL_Event event;
-        while (SDL_PollEvent(&event)) {
+        while (SDL_WaitEvent(&event)) {
             switch (event.type) {
             case SDL_QUIT:
                 exit(0);
@@ -502,10 +501,10 @@ static void *thread_input_device(void *ptr) {
 
                 case SDLK_a:
                     if (event.key.timestamp - btn_a_start > 500) {
-                        rbtn_click(false);
-                        g_key = RIGHT_KEY_PRESS;
+                        rbtn_click(RIGHT_KEY_LONG_PRESS);
+                        g_key = RIGHT_KEY_LONG_PRESS;
                     } else {
-                        rbtn_click(true);
+                        rbtn_click(RIGHT_KEY_CLICK);
                         g_key = RIGHT_KEY_CLICK;
                     }
                     btn_a_start = 0;

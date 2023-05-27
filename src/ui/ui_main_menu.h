@@ -7,6 +7,7 @@
 #include <lvgl/lvgl.h>
 
 #include "ui/page_common.h"
+#include "core/common.hh"
 
 typedef struct {
     const char *name;
@@ -20,7 +21,7 @@ typedef struct {
     void (*exit)();
     void (*on_roller)(uint8_t key);
     void (*on_click)(uint8_t key, int sel);
-    void (*on_right_button)(bool is_short);
+    void (*on_right_button)(right_button_input_t click_type);
 } page_pack_t;
 
 typedef struct {
@@ -41,7 +42,7 @@ void submenu_enter();
 void submenu_exit();
 void submenu_roller(uint8_t key);
 void submenu_click(void);
-void submenu_right_button(bool is_short);
+void submenu_right_button(right_button_input_t click_type);
 void progress_bar_update();
 
 #endif
